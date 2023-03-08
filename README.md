@@ -2,12 +2,12 @@
 Allows different vim windows to have their own search patterns.
 
 Demonstration:
-[![demo](https://asciinema.org/a/565707.svg)](https://asciinema.org/a/565707)
+[![demo](https://asciinema.org/a/565707.svg)](https://asciinema.org/a/565707?autoplay=1)
 
 # Usage
 Just same as vim searches.
 * `/` : start a search
-* `n` and `N` : nagivate among results
+* `n` and `N` : navigate among results
 * `*` and `#` : search for word under the cursor
 * the register `@/` contains the search pattern of the current window.
 
@@ -19,7 +19,7 @@ Like any other vim plugins.
 
 For example if you use vim-plug, add the following line to your .vimrc:
 ```
-Plugin 'hoblovski/perwindow-search.vim'
+Plug 'hoblovski/perwindow-search.vim'
 ```
 
 # Requirements & Troubleshooting
