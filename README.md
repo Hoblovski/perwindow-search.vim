@@ -1,0 +1,36 @@
+# perwindow-search.vim
+Allows different vim windows to have their own search patterns.
+
+Demonstration:
+
+TODO: asciinema
+
+# Usage
+Just same as vim searches.
+* `/` : start a search
+* `n` and `N` : nagivate among results
+* `*` and `#` : search for word under the cursor
+* the register `@/` contains the search pattern of the current window.
+
+Different from plain vim:
+* `/ <C-C>` : cancel search highlight i.e. `:nohls`
+
+# Installation
+Like any other vim plugins.
+
+For example if you use vim-plug, add the following line to your .vimrc:
+```
+Plugin 'hoblovski/perwindow-search.vim'
+```
+
+# Requirements & Troubleshooting
+Working fine with my vim 8.1.
+
+The plugin is really simple and it should work with any recent vim with a
+reasonable feature set.  Compatibility with other plugins should be fine though
+not tested.
+Try the following steps in case of trouble:
+* Delete `set hls` or `set hlsearch` in your .vimrc
+* Ensure `/ N n * #` are not mapped, because perwindow-search remaps them.
+* File an issue, including your `vim --version` and your plugin list.
+
