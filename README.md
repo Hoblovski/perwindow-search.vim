@@ -2,8 +2,7 @@
 Allows different vim windows to have their own search patterns.
 
 Demonstration:
-
-TODO: asciinema
+[![demo](https://asciinema.org/a/565707.svg)](https://asciinema.org/a/565707)
 
 # Usage
 Just same as vim searches.
