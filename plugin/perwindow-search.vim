@@ -1,4 +1,4 @@
-" perwindow-search.vim 
+" perwindow-search.vim
 " Description:  Allows each vim window to have its own search patterns
 " Maintainer:   Hoblovski <https://github.com/Hoblovski/>
 " Version:      0.1
@@ -24,7 +24,7 @@ call <SID>UndefineSearchHighlights()
 " on new window:
 " * inherit search pattern
 " the highlight part is done subsequently by WinEnter
-au WinNew,VimEnter,TabNew   * let w:pws_ptn=''
+au WinNew,VimEnter,TabNew   * let w:pws_ptn=@/
 
 " on leave window:
 " * save search pattern
@@ -37,7 +37,11 @@ au WinLeave * call clearmatches() |
 " * restore search pattern
 " * update highlight matches: set search results in current window to active
 au WinEnter * call clearmatches() |
-            \ let @/=w:pws_ptn |
+            \ if !exists('w:pws_ptn') |
+            \   let w:pws_ptn=@/ |
+            \ else |
+            \   let @/=w:pws_ptn |
+            \ endif |
             \ call matchadd('SearchActive', w:pws_ptn, 0)
 
 " on search:
