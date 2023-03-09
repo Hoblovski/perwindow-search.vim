@@ -24,7 +24,7 @@ call <SID>UndefineSearchHighlights()
 " on new window:
 " * inherit search pattern
 " the highlight part is done subsequently by WinEnter
-au WinNew   * let w:pws_ptn=@/
+au WinNew,VimEnter,TabNew   * let w:pws_ptn=''
 
 " on leave window:
 " * save search pattern
