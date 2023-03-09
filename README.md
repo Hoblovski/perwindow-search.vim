@@ -13,6 +13,7 @@ Just same as vim searches.
 
 Different from plain vim:
 * `/ <C-C>` : cancel search highlight i.e. `:nohls`
+* `/ <C-S>` : set the search pattern to that of another window
 
 # Installation
 Like any other vim plugins.

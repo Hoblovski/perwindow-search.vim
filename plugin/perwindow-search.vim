@@ -52,6 +52,7 @@ au WinEnter * call clearmatches() |
 " up highlighting the the old pattern.
 cnoremap <expr> <silent> <CR> getcmdtype() == '/' ? '<CR>:call <SID>AfterSlashRegChange()<CR>' : '<CR>'
 function! s:AfterSlashRegChange()
+  let w:pws_ptn=@/
   call clearmatches()
   call <SID>DefineSearchHighlights()
   call matchadd('SearchActive', @/, 0)
@@ -67,4 +68,36 @@ nnoremap <silent> N N:call <SID>DefineSearchHighlights()<CR>
 
 nnoremap <silent> * *:call <SID>AfterSlashRegChange()<CR>
 nnoremap <silent> # #:call <SID>AfterSlashRegChange()<CR>
+
+" Allows user to quickly set @/ to that of another window
+function! s:SelectSearchPattern()
+  echo 'Select search patterns'
+  let lineid = 0
+  let wininfos = getwininfo()
+  echo printf('%3s : %3s [%3s] : %s', 'tab', 'win', 'idx', 'ptn')
+  for win in wininfos
+    if !has_key(win['variables'], 'pws_ptn')
+      let lineid += 1
+      echo '___'
+      continue
+    endif
+
+    let idx = lineid
+    if win['winid'] == win_getid()
+      let idx = '**'
+    endif
+    echo printf('%3d : %3d [%3s] : %s', win['tabnr'], win['winnr'], idx, win['variables']['pws_ptn'])
+    let lineid += 1
+  endfor
+  let x = input('Enter pattern idx, <C-C> to cancel...')
+  if empty(x)
+    return
+  endif
+  let x = str2nr(x)
+  let win = wininfos[x]
+  let @/ = win['variables']['pws_ptn']
+  call <SID>AfterSlashRegChange()
+endfunction
+
+cnoremap <expr> <silent> <C-S> getcmdtype() == '/' ? '<C-C>:call <SID>SelectSearchPattern()<CR>' : '<C-S>'
 
