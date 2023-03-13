@@ -97,6 +97,7 @@ function! s:SelectSearchPattern()
   let win = wininfos[x]
   let @/ = win['variables']['pws_ptn']
   call <SID>AfterSlashRegChange()
+  call feedkeys('n<C-L>', 'n')
 endfunction
 
 cnoremap <expr> <silent> <C-S> getcmdtype() == '/' ? '<C-C>:call <SID>SelectSearchPattern()<CR>' : '<C-S>'
